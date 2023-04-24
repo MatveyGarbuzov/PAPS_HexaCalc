@@ -1,0 +1,1555 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Hexadecimal-->
+        <scene sceneID="hNz-n2-bh7">
+            <objects>
+                <viewController id="9pv-A4-QxB" customClass="HexadecimalViewController" customModule="HexaCalc" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4da-24-9uX">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="e8g-mp-jBB">
+                                        <rect key="frame" x="73.666666666666686" y="436" width="267" height="325"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="35y-Ac-0Gl">
+                                                <rect key="frame" x="0.0" y="0.0" width="267" height="53"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="myN-cA-UId" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="38" height="53"/>
+                                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
+                                                        <state key="normal" title="AC">
+                                                            <color key="titleColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="ACPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="qrn-3d-Vl3"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Pw-L1-6hK" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="98.999999999999986" y="0.0" width="50.000000000000014" height="53"/>
+                                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
+                                                        <state key="normal" title="2nd">
+                                                            <color key="titleColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="secondFunctionPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="Awa-3F-ych"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1L-do-5TF" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="210" y="0.0" width="57" height="53"/>
+                                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="DEL">
+                                                            <color key="titleColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="deletePressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="Dgc-Vt-2Cw"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="oxv-2j-paj">
+                                                <rect key="frame" x="0.0" y="58" width="267" height="49"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="orD-ym-tCe" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="57" height="49"/>
+                                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
+                                                        <state key="normal" title="XOR">
+                                                            <color key="titleColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="XORPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="JpU-Y2-cgA"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l3d-yL-2Bv" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="61.999999999999986" y="0.0" width="40" height="49"/>
+                                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
+                                                        <state key="normal" title="OR">
+                                                            <color key="titleColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="ORPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="rkt-TF-6cR"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eom-pu-5Jp" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="107" y="0.0" width="61" height="49"/>
+                                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
+                                                        <state key="normal" title="AND">
+                                                            <color key="titleColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="ANDPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="HJy-X7-37b"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mn8-rC-aGV" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="173" y="0.0" width="59" height="49"/>
+                                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
+                                                        <state key="normal" title="NOT">
+                                                            <color key="titleColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="NOTPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="HZP-Zx-JjS"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7qR-TY-uyZ" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="237" y="0.0" width="30" height="49"/>
+                                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
+                                                        <state key="normal" title="÷">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="dividePressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="mb6-pr-u7T"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="vZb-vh-zDY">
+                                                <rect key="frame" x="0.0" y="112" width="267" height="49"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="smO-xS-RkX" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="30" height="49"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
+                                                        <state key="normal" title="C">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="digitPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="9H8-lm-t24"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GKx-jy-StE" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="58.999999999999986" y="0.0" width="30" height="49"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
+                                                        <state key="normal" title="D">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="digitPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="Ve7-3y-1df"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vu7-Jp-Iwf" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="118.33333333333331" y="0.0" width="30" height="49"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
+                                                        <state key="normal" title="E">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="digitPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="XcK-15-ARQ"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jjF-4y-iCl" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="177.66666666666669" y="0.0" width="30" height="49"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
+                                                        <state key="normal" title="F">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="digitPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="TmP-Ml-E8a"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="diM-XB-4lV" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="237" y="0.0" width="30" height="49"/>
+                                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
+                                                        <state key="normal" title="×">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="multiplyPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="K8z-pE-nN3"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="7tZ-hM-ixL">
+                                                <rect key="frame" x="0.0" y="166" width="267" height="49"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4o4-aX-KfG" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="30" height="49"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
+                                                        <state key="normal" title="8">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="digitPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="zwe-dm-0A2"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPa-Ui-a7P" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="58.999999999999986" y="0.0" width="30" height="49"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
+                                                        <state key="normal" title="9">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="digitPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="Vsv-SG-dms"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ty1-ux-gmg" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="118.33333333333331" y="0.0" width="30" height="49"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
+                                                        <state key="normal" title="A">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="digitPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="Tmu-0m-HY8"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IHa-5E-F5t" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="177.66666666666669" y="0.0" width="30" height="49"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
+                                                        <state key="normal" title="B">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="digitPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="MMu-CG-1dj"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gez-Xo-Kz8" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="237" y="0.0" width="30" height="49"/>
+                                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
+                                                        <state key="normal" title="-">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="minusPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="1Ot-ky-g9b"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Uxn-g6-081">
+                                                <rect key="frame" x="0.0" y="220" width="267" height="49"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D2r-eu-AmU" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="30" height="49"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
+                                                        <state key="normal" title="4">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="digitPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="wxp-gJ-9vN"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4iD-VD-Nfg" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="58.999999999999986" y="0.0" width="30" height="49"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
+                                                        <state key="normal" title="5">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="digitPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="fWY-Co-Obb"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y3I-sD-UOM" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="118.33333333333331" y="0.0" width="30" height="49"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
+                                                        <state key="normal" title="6">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="digitPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="0HP-69-nfH"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="20M-zv-LsB" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="177.66666666666669" y="0.0" width="30" height="49"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
+                                                        <state key="normal" title="7">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="digitPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="MMo-Rr-Wqr"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H0R-SQ-pp9" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="237" y="0.0" width="30" height="49"/>
+                                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
+                                                        <state key="normal" title="+">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="plusPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="SZK-T5-B7x"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1cX-aU-Qkl">
+                                                <rect key="frame" x="0.0" y="274" width="267" height="51"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eIS-kh-BsJ" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="30" height="51"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
+                                                        <state key="normal" title="0">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="digitPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="Dlx-Gk-zZn"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fd9-3O-EiD" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="58.999999999999986" y="0.0" width="30" height="51"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
+                                                        <state key="normal" title="1">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="digitPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="8jd-fY-jqf"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7tu-Vi-hcn" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="118.33333333333331" y="0.0" width="30" height="51"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
+                                                        <state key="normal" title="2">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="digitPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="nYs-ea-6xV"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="100-1S-VjQ" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="177.66666666666669" y="0.0" width="30" height="51"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="27"/>
+                                                        <state key="normal" title="3">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="digitPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="eLL-1F-KH5"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U1A-va-aP4" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="237" y="0.0" width="30" height="51"/>
+                                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="28"/>
+                                                        <state key="normal" title="=">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="equalsPressed:" destination="9pv-A4-QxB" eventType="touchUpInside" id="hHK-cX-WXd"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="Z7g-zo-MXa">
+                                        <rect key="frame" x="185.33333333333334" y="310.33333333333331" width="43.666666666666657" height="102.66666666666669"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="Hexadecimal Output Label" label="hexadecimalOutputLabel">
+                                            <accessibilityTraits key="traits" staticText="YES"/>
+                                        </accessibility>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="75"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="e8g-mp-jBB" firstAttribute="bottom" secondItem="4da-24-9uX" secondAttribute="bottomMargin" id="Qox-fa-Lxj"/>
+                                    <constraint firstItem="Z7g-zo-MXa" firstAttribute="centerX" secondItem="e8g-mp-jBB" secondAttribute="centerX" id="Shr-A0-ioB"/>
+                                    <constraint firstItem="e8g-mp-jBB" firstAttribute="top" secondItem="Z7g-zo-MXa" secondAttribute="bottom" priority="250" constant="23" id="T3G-Qs-Vvf"/>
+                                    <constraint firstItem="e8g-mp-jBB" firstAttribute="centerX" secondItem="4da-24-9uX" secondAttribute="centerX" id="Yf6-At-zWt"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4da-24-9uX" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" id="5zp-2V-Jd0"/>
+                            <constraint firstItem="PQr-Ze-W5v" firstAttribute="bottom" secondItem="4da-24-9uX" secondAttribute="bottom" id="Js1-SX-7aq"/>
+                            <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="4da-24-9uX" secondAttribute="trailing" id="RG6-a4-McA"/>
+                            <constraint firstItem="4da-24-9uX" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" id="cdG-BT-a8F"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Hexadecimal" image="hexagon" catalog="system" id="acW-dT-cKf"/>
+                    <connections>
+                        <outlet property="ABtn" destination="ty1-ux-gmg" id="fpp-t3-RPQ"/>
+                        <outlet property="ACBtn" destination="myN-cA-UId" id="AFf-d7-K0C"/>
+                        <outlet property="ANDBtn" destination="Eom-pu-5Jp" id="Hca-Eg-rgs"/>
+                        <outlet property="BBtn" destination="IHa-5E-F5t" id="xjT-1X-ger"/>
+                        <outlet property="Btn0" destination="eIS-kh-BsJ" id="5tc-E7-kKy"/>
+                        <outlet property="Btn1" destination="Fd9-3O-EiD" id="aiz-HM-sB4"/>
+                        <outlet property="Btn2" destination="7tu-Vi-hcn" id="fsg-W5-zFS"/>
+                        <outlet property="Btn3" destination="100-1S-VjQ" id="fkb-cI-sYG"/>
+                        <outlet property="Btn4" destination="D2r-eu-AmU" id="27m-u9-JGm"/>
+                        <outlet property="Btn5" destination="4iD-VD-Nfg" id="5bR-kL-zbo"/>
+                        <outlet property="Btn6" destination="Y3I-sD-UOM" id="uum-Jr-9LA"/>
+                        <outlet property="Btn7" destination="20M-zv-LsB" id="pEB-ay-U24"/>
+                        <outlet property="Btn8" destination="4o4-aX-KfG" id="1BR-BT-hQd"/>
+                        <outlet property="Btn9" destination="LPa-Ui-a7P" id="GXg-L0-eLO"/>
+                        <outlet property="CBtn" destination="smO-xS-RkX" id="3pi-Q0-G81"/>
+                        <outlet property="DBtn" destination="GKx-jy-StE" id="4c6-6F-UMg"/>
+                        <outlet property="DELBtn" destination="f1L-do-5TF" id="jbc-B1-cQt"/>
+                        <outlet property="DIVBtn" destination="7qR-TY-uyZ" id="9RJ-vb-LFT"/>
+                        <outlet property="EBtn" destination="Vu7-Jp-Iwf" id="b5W-vc-iWG"/>
+                        <outlet property="EQUALSBtn" destination="U1A-va-aP4" id="0Dh-k0-BOG"/>
+                        <outlet property="FBtn" destination="jjF-4y-iCl" id="e6t-Pv-ScO"/>
+                        <outlet property="MULTBtn" destination="diM-XB-4lV" id="R97-Os-nWp"/>
+                        <outlet property="NOTBtn" destination="Mn8-rC-aGV" id="WZG-aQ-gSG"/>
+                        <outlet property="ORBtn" destination="l3d-yL-2Bv" id="mYz-0O-m6J"/>
+                        <outlet property="PLUSBtn" destination="H0R-SQ-pp9" id="38k-RZ-H5d"/>
+                        <outlet property="SUBBtn" destination="Gez-Xo-Kz8" id="JXu-j1-fKf"/>
+                        <outlet property="SecondFunctionBtn" destination="6Pw-L1-6hK" id="vgp-XQ-F3U"/>
+                        <outlet property="XORBtn" destination="orD-ym-tCe" id="hTE-nX-WMP"/>
+                        <outlet property="hexHStack1" destination="35y-Ac-0Gl" id="O1P-My-I3M"/>
+                        <outlet property="hexHStack2" destination="oxv-2j-paj" id="Uha-eo-59l"/>
+                        <outlet property="hexHStack3" destination="vZb-vh-zDY" id="CjJ-4F-tDk"/>
+                        <outlet property="hexHStack4" destination="7tZ-hM-ixL" id="d7D-cf-0Fj"/>
+                        <outlet property="hexHStack5" destination="Uxn-g6-081" id="uXi-BF-VQl"/>
+                        <outlet property="hexHStack6" destination="1cX-aU-Qkl" id="yXN-f6-iMf"/>
+                        <outlet property="hexVStack" destination="e8g-mp-jBB" id="wcQ-oH-hCy"/>
+                        <outlet property="outputLabel" destination="Z7g-zo-MXa" id="qet-PS-mwE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="99" y="-363"/>
+        </scene>
+        <!--Binary-->
+        <scene sceneID="wg7-f3-ORb">
+            <objects>
+                <viewController id="8rJ-Kc-sve" customClass="BinaryViewController" customModule="HexaCalc" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HKc-mO-UCF">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="55i-hd-IgX">
+                                        <rect key="frame" x="112.66666666666669" y="496" width="189" height="265"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ijy-Iy-URI">
+                                                <rect key="frame" x="0.0" y="0.0" width="189" height="53"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SKC-3T-8cx" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="42" height="53"/>
+                                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="AC">
+                                                            <color key="titleColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="ACPressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="vZq-Hg-64V"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sij-Yn-oNW" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="71.999999999999986" y="0.0" width="57.000000000000014" height="53"/>
+                                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="DEL">
+                                                            <color key="titleColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="deletePressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="nb0-yd-w7a"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i3q-Dh-2ps" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="159" y="0.0" width="30" height="53"/>
+                                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="÷">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="dividePressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="umR-lQ-t9i"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="mUt-5U-1Xp">
+                                                <rect key="frame" x="0.0" y="53" width="189" height="53"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JDN-r5-ppP" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="40" height="53"/>
+                                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="&lt;&lt;">
+                                                            <color key="titleColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="leftShiftPressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="COu-vl-BCr"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IxU-Uv-ERW" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="44.999999999999986" y="0.0" width="40" height="53"/>
+                                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="&gt;&gt;">
+                                                            <color key="titleColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="rightShiftPressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="OGp-PL-SRv"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y5d-XQ-8me" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="89.999999999999986" y="0.0" width="64.000000000000014" height="53"/>
+                                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="XOR">
+                                                            <color key="titleColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="XORPressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="6aK-dI-3fe"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fws-FY-nc0" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="159" y="0.0" width="30" height="53"/>
+                                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="×">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="multiplyPressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="tRc-B4-few"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="WRl-Ii-Yij">
+                                                <rect key="frame" x="0.0" y="106" width="189" height="53"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ydo-vE-RTm" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="41" height="53"/>
+                                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="1's">
+                                                            <color key="titleColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="onesCompPressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="c15-Vn-o4r"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sDe-dc-EtK" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="51.666666666666671" y="0.0" width="41" height="53"/>
+                                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="2's">
+                                                            <color key="titleColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="twosCompPressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="1r2-bn-rlA"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="39t-2m-b1f" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="103.33333333333333" y="0.0" width="44.999999999999986" height="53"/>
+                                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="OR">
+                                                            <color key="titleColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="ORPressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="SAC-CB-oRq"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tBV-dh-STG" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="159" y="0.0" width="30" height="53"/>
+                                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="-">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="minusPressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="IoX-Zn-YDJ"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="3IF-xw-PqV">
+                                                <rect key="frame" x="0.0" y="159" width="189" height="53"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gl7-nE-VdG" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="30" height="53"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="1">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="numberPressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="9x6-jA-qPW"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xyC-0x-fbI" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="37.999999999999986" y="0.0" width="37" height="53"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="11">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="numberPressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="RDQ-9c-snB"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uxe-EP-a1f" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="82.999999999999986" y="0.0" width="68.000000000000014" height="53"/>
+                                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="AND">
+                                                            <color key="titleColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="ANDPressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="35P-nb-5wu"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bSG-bo-Kqa" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="159" y="0.0" width="30" height="53"/>
+                                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="+">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="addPressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="VKo-jK-db9"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ggU-ns-mmy">
+                                                <rect key="frame" x="0.0" y="212" width="189" height="53"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uZk-z6-Dqu" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="30" height="53"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="0">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="numberPressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="72b-Ug-qWP"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ii9-LZ-xrx" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="38.666666666666671" y="0.0" width="37" height="53"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="00">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="numberPressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="1ns-Df-Uuq"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ckg-ug-m1d" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="84.333333333333329" y="0.0" width="65.999999999999986" height="53"/>
+                                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="NOT">
+                                                            <color key="titleColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="NOTPressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="Wxl-dX-e1J"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nb5-ih-FLz" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="159" y="0.0" width="30" height="53"/>
+                                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="=">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="equalsPressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="lPI-0v-e0P"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" minimumScaleFactor="0.20000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="c3H-nl-HbE">
+                                        <rect key="frame" x="-202" y="445.66666666666669" width="818" height="27.333333333333314"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="Binary Output Label" label="binaryOutputLabel"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="55i-hd-IgX" firstAttribute="centerX" secondItem="HKc-mO-UCF" secondAttribute="centerX" id="1i1-53-J7H"/>
+                                    <constraint firstItem="55i-hd-IgX" firstAttribute="top" secondItem="c3H-nl-HbE" secondAttribute="bottom" priority="250" constant="23" id="XBA-3T-MJ9"/>
+                                    <constraint firstItem="55i-hd-IgX" firstAttribute="bottom" secondItem="HKc-mO-UCF" secondAttribute="bottomMargin" id="YdW-OG-G2P"/>
+                                    <constraint firstItem="c3H-nl-HbE" firstAttribute="centerX" secondItem="55i-hd-IgX" secondAttribute="centerX" id="ch3-Ke-rPy"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HKc-mO-UCF" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="aVR-RW-4WE"/>
+                            <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="HKc-mO-UCF" secondAttribute="bottom" id="alG-PE-2Gp"/>
+                            <constraint firstItem="HKc-mO-UCF" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" id="obL-ub-Bjo"/>
+                            <constraint firstItem="O1u-W8-tvY" firstAttribute="trailing" secondItem="HKc-mO-UCF" secondAttribute="trailing" id="t2U-vS-EVp"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Binary" image="01.square" catalog="system" id="cPa-gy-q4n"/>
+                    <connections>
+                        <outlet property="ACBtn" destination="SKC-3T-8cx" id="jji-GA-O2t"/>
+                        <outlet property="ANDBtn" destination="Uxe-EP-a1f" id="xEz-aX-b8k"/>
+                        <outlet property="Btn0" destination="uZk-z6-Dqu" id="Xwa-IR-LjI"/>
+                        <outlet property="Btn00" destination="ii9-LZ-xrx" id="CFt-kz-83S"/>
+                        <outlet property="Btn1" destination="Gl7-nE-VdG" id="wRq-pC-heN"/>
+                        <outlet property="Btn11" destination="xyC-0x-fbI" id="lBh-hj-itc"/>
+                        <outlet property="DELBtn" destination="Sij-Yn-oNW" id="AVF-vM-3WP"/>
+                        <outlet property="DIVBtn" destination="i3q-Dh-2ps" id="IMN-wF-0rM"/>
+                        <outlet property="EQUALSBtn" destination="nb5-ih-FLz" id="dEf-sA-7Lq"/>
+                        <outlet property="LSBtn" destination="JDN-r5-ppP" id="I4F-ht-Tje"/>
+                        <outlet property="MULTBtn" destination="fws-FY-nc0" id="pw7-hF-qvA"/>
+                        <outlet property="NOTBtn" destination="ckg-ug-m1d" id="iRt-qd-koc"/>
+                        <outlet property="ONESBtn" destination="Ydo-vE-RTm" id="RGH-Zo-NYW"/>
+                        <outlet property="ORBtn" destination="39t-2m-b1f" id="Q5s-Yr-QaN"/>
+                        <outlet property="PLUSBtn" destination="bSG-bo-Kqa" id="yTy-oe-7lQ"/>
+                        <outlet property="RSBtn" destination="IxU-Uv-ERW" id="O9f-Ee-dLA"/>
+                        <outlet property="SUBBtn" destination="tBV-dh-STG" id="thr-Rz-i4D"/>
+                        <outlet property="TWOSBtn" destination="sDe-dc-EtK" id="3u1-oF-vrp"/>
+                        <outlet property="XORBtn" destination="Y5d-XQ-8me" id="mgf-Ol-jD7"/>
+                        <outlet property="binHStack1" destination="ijy-Iy-URI" id="ZvP-02-I5X"/>
+                        <outlet property="binHStack2" destination="mUt-5U-1Xp" id="2Fl-cz-cq2"/>
+                        <outlet property="binHStack3" destination="WRl-Ii-Yij" id="Ejh-6J-QxB"/>
+                        <outlet property="binHStack4" destination="3IF-xw-PqV" id="xKI-CL-fgm"/>
+                        <outlet property="binHStack5" destination="ggU-ns-mmy" id="nUn-z6-iCS"/>
+                        <outlet property="binVStack" destination="55i-hd-IgX" id="fLD-4O-4fn"/>
+                        <outlet property="outputLabel" destination="c3H-nl-HbE" id="Ika-ID-pHJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="883" y="-364"/>
+        </scene>
+        <!--Decimal-->
+        <scene sceneID="9w7-RN-59N">
+            <objects>
+                <viewController id="G05-w2-BtH" customClass="DecimalViewController" customModule="HexaCalc" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9Vu-NR-tEg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2gC-fg-Gz8">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="YRn-jp-boy">
+                                        <rect key="frame" x="107.66666666666669" y="476" width="199" height="285"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="iy6-EE-Ni3">
+                                                <rect key="frame" x="0.0" y="0.0" width="199" height="53"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lFW-Xu-MGc" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="42" height="53"/>
+                                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="AC">
+                                                            <color key="titleColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="allClearPressed:" destination="G05-w2-BtH" eventType="touchUpInside" id="qOJ-i1-e3k"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0jA-8e-5dW" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="46.999999999999986" y="0.0" width="55" height="53"/>
+                                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="2nd">
+                                                            <color key="titleColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="secondFunctionPressed:" destination="G05-w2-BtH" eventType="touchUpInside" id="yr6-Xx-I19"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSD-iO-cST" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="107" y="0.0" width="57" height="53"/>
+                                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="DEL">
+                                                            <color key="titleColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="deletePressed:" destination="G05-w2-BtH" eventType="touchUpInside" id="TPT-5c-laj"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gf0-fY-7VF" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="169" y="0.0" width="30" height="53"/>
+                                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="÷">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="dividePressed:" destination="G05-w2-BtH" eventType="touchUpInside" id="B1g-TT-yS7"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="VS6-jf-MsZ">
+                                                <rect key="frame" x="0.0" y="58" width="199" height="53"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d46-2F-KNS" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="30" height="53"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="7">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="numberPressed:" destination="G05-w2-BtH" eventType="touchUpInside" id="F3w-Ee-gjE"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="riD-mq-Hgo" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="56.333333333333329" y="0.0" width="30" height="53"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="8">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="numberPressed:" destination="G05-w2-BtH" eventType="touchUpInside" id="tiz-qY-u99"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDE-6X-Dgl" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="112.66666666666667" y="0.0" width="30.000000000000014" height="53"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="9">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="numberPressed:" destination="G05-w2-BtH" eventType="touchUpInside" id="4Xe-HH-poS"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Zk-72-2JA" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="169" y="0.0" width="30" height="53"/>
+                                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="×">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="multiplyPressed:" destination="G05-w2-BtH" eventType="touchUpInside" id="ZBF-Oh-xdp"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="9os-7c-VOg">
+                                                <rect key="frame" x="0.0" y="116" width="199" height="53"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zCK-9B-i1G" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="30" height="53"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="4">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="numberPressed:" destination="G05-w2-BtH" eventType="touchUpInside" id="PKK-zP-Hjo"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4x4-Cz-LL6" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="56.333333333333329" y="0.0" width="30" height="53"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="5">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="numberPressed:" destination="G05-w2-BtH" eventType="touchUpInside" id="eIK-Y1-xuS"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fm-vl-7ec" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="112.66666666666667" y="0.0" width="30.000000000000014" height="53"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="6">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="numberPressed:" destination="G05-w2-BtH" eventType="touchUpInside" id="psR-9s-l1q"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dLL-MC-QGn" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="169" y="0.0" width="30" height="53"/>
+                                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="-">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="minusPressed:" destination="G05-w2-BtH" eventType="touchUpInside" id="tq4-JW-J66"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="FlW-yi-Lcq">
+                                                <rect key="frame" x="0.0" y="174" width="199" height="53"/>
+                                                <subviews>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zC8-mX-mk0" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="30" height="53"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="1">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="numberPressed:" destination="G05-w2-BtH" eventType="touchUpInside" id="zpl-vO-0Os"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAv-IB-DwS" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="56.333333333333329" y="0.0" width="30" height="53"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="2">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="numberPressed:" destination="G05-w2-BtH" eventType="touchUpInside" id="N5x-4L-AiO"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XYA-Dk-uvT" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="112.66666666666667" y="0.0" width="30.000000000000014" height="53"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="3">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="numberPressed:" destination="G05-w2-BtH" eventType="touchUpInside" id="bed-IZ-y1d"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FR4-Tm-oSL" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="169" y="0.0" width="30" height="53"/>
+                                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="+">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="plusPressed:" destination="G05-w2-BtH" eventType="touchUpInside" id="4zS-NT-VGr"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="LTM-03-4nc">
+                                                <rect key="frame" x="0.0" y="232" width="199" height="53"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2jt-QL-6HL" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="30" height="53"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="0">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="numberPressed:" destination="G05-w2-BtH" eventType="touchUpInside" id="JbW-xc-UG8"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pDP-oH-8mG" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="84.333333333333329" y="0.0" width="30" height="53"/>
+                                                        <color key="backgroundColor" systemColor="viewFlipsideBackgroundColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title=".">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="dotPressed:" destination="G05-w2-BtH" eventType="touchUpInside" id="eBL-aQ-H3c"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EJa-MM-1Zh" customClass="RoundButton" customModule="HexaCalc" customModuleProvider="target">
+                                                        <rect key="frame" x="169" y="0.0" width="30" height="53"/>
+                                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="30"/>
+                                                        <state key="normal" title="=">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundButton" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="equalsPressed:" destination="G05-w2-BtH" eventType="touchUpInside" id="qll-Rg-9SR"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="a2J-4m-Np0">
+                                        <rect key="frame" x="185.33333333333334" y="350.33333333333331" width="43.666666666666657" height="102.66666666666669"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="Decimal Output Label" label="decimalOutputLabel"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="75"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="YRn-jp-boy" firstAttribute="top" secondItem="a2J-4m-Np0" secondAttribute="bottom" priority="250" constant="23" id="4Mn-Si-XTX"/>
+                                    <constraint firstItem="YRn-jp-boy" firstAttribute="bottom" secondItem="2gC-fg-Gz8" secondAttribute="bottomMargin" id="HbO-rU-dvK"/>
+                                    <constraint firstItem="a2J-4m-Np0" firstAttribute="centerX" secondItem="YRn-jp-boy" secondAttribute="centerX" id="ZtP-6E-lmq"/>
+                                    <constraint firstItem="YRn-jp-boy" firstAttribute="centerX" secondItem="2gC-fg-Gz8" secondAttribute="centerX" id="kvT-4s-uJk"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Dtc-nC-bDt"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="2gC-fg-Gz8" firstAttribute="top" secondItem="Dtc-nC-bDt" secondAttribute="top" id="6Pi-SM-VC9"/>
+                            <constraint firstItem="2gC-fg-Gz8" firstAttribute="leading" secondItem="Dtc-nC-bDt" secondAttribute="leading" id="SPR-Fp-bF7"/>
+                            <constraint firstItem="Dtc-nC-bDt" firstAttribute="trailing" secondItem="2gC-fg-Gz8" secondAttribute="trailing" id="dmF-eR-tI5"/>
+                            <constraint firstItem="Dtc-nC-bDt" firstAttribute="bottom" secondItem="2gC-fg-Gz8" secondAttribute="bottom" id="z0i-Am-mU0"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Decimal" image="dot.square" catalog="system" id="MSz-RZ-ybu"/>
+                    <connections>
+                        <outlet property="ACBtn" destination="lFW-Xu-MGc" id="cSF-W0-3dI"/>
+                        <outlet property="Btn0" destination="2jt-QL-6HL" id="vFQ-Xf-UUM"/>
+                        <outlet property="Btn1" destination="zC8-mX-mk0" id="oGM-oI-cre"/>
+                        <outlet property="Btn2" destination="rAv-IB-DwS" id="0Ed-FX-HtO"/>
+                        <outlet property="Btn3" destination="XYA-Dk-uvT" id="SIh-XV-Cwk"/>
+                        <outlet property="Btn4" destination="zCK-9B-i1G" id="rle-3f-Jza"/>
+                        <outlet property="Btn5" destination="4x4-Cz-LL6" id="yba-iG-Y5o"/>
+                        <outlet property="Btn6" destination="9fm-vl-7ec" id="Ac3-rb-nqd"/>
+                        <outlet property="Btn7" destination="d46-2F-KNS" id="Jtr-EY-Yml"/>
+                        <outlet property="Btn8" destination="riD-mq-Hgo" id="l9m-pO-fbj"/>
+                        <outlet property="Btn9" destination="fDE-6X-Dgl" id="19Y-Vw-3Cu"/>
+                        <outlet property="DELBtn" destination="lSD-iO-cST" id="neD-q4-0ng"/>
+                        <outlet property="DIVBtn" destination="gf0-fY-7VF" id="rUK-Ep-NQN"/>
+                        <outlet property="DOTBtn" destination="pDP-oH-8mG" id="jui-c8-kLT"/>
+                        <outlet property="EQUALSBtn" destination="EJa-MM-1Zh" id="QZp-HX-LEN"/>
+                        <outlet property="MULTBtn" destination="3Zk-72-2JA" id="FMg-6V-dTw"/>
+                        <outlet property="PLUSBtn" destination="FR4-Tm-oSL" id="UIb-PI-jJH"/>
+                        <outlet property="SUBBtn" destination="dLL-MC-QGn" id="Edy-KV-upM"/>
+                        <outlet property="SecondFunctionBtn" destination="0jA-8e-5dW" id="80F-rw-jXb"/>
+                        <outlet property="decHStack1" destination="iy6-EE-Ni3" id="EwX-kn-7h6"/>
+                        <outlet property="decHStack2" destination="VS6-jf-MsZ" id="txb-dV-zXZ"/>
+                        <outlet property="decHStack3" destination="9os-7c-VOg" id="L7v-NX-f58"/>
+                        <outlet property="decHStack4" destination="FlW-yi-Lcq" id="oti-qF-Sqg"/>
+                        <outlet property="decHStack5" destination="LTM-03-4nc" id="4c4-f2-aUd"/>
+                        <outlet property="decVStack" destination="YRn-jp-boy" id="0CW-Xw-Imw"/>
+                        <outlet property="outputLabel" destination="a2J-4m-Np0" id="XnH-LW-htg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zxz-Tp-VmB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1599" y="-364"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="pFY-ga-fjx">
+            <objects>
+                <viewController id="E78-IU-jHO" customClass="SettingsViewController" customModule="HexaCalc" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="Settings" id="mab-AI-HrS"/>
+                    <connections>
+                        <outlet property="navigationItem" destination="mab-AI-HrS" id="a5X-Ab-mKo"/>
+                        <segue destination="CNG-kH-WYO" kind="show" identifier="OpenSettingsSelectionVC" id="npp-bm-L2Y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uxG-Ra-cND" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1598.5507246376812" y="962.94642857142856"/>
+        </scene>
+        <!--Settings Selection View Controller-->
+        <scene sceneID="h7p-Jb-9oG">
+            <objects>
+                <viewController storyboardIdentifier="SettingsSelectionVC" id="CNG-kH-WYO" customClass="SettingsSelectionViewController" customModule="HexaCalc" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LJl-eX-gQn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="WL5-Sw-5rd"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="OOZ-AH-ySr"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ksh-eH-CpZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2387" y="963"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="yl2-sM-qoP">
+            <objects>
+                <tabBarController storyboardIdentifier="tabBarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="49e-Tb-3d3" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
+                        <rect key="frame" x="0.0" y="975" width="768" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" systemColor="systemGreenColor"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBar>
+                    <connections>
+                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="G05-w2-BtH" kind="relationship" relationship="viewControllers" id="Tkt-OU-gMU"/>
+                        <segue destination="u9b-zy-5nT" kind="relationship" relationship="viewControllers" id="1au-dO-Def"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="883" y="303"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="8Nf-G7-6UM">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="u9b-zy-5nT" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="rj5-x7-Ssg"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="center" translucent="NO" largeTitles="YES" id="6fB-y6-T0l">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="21"/>
+                            <color key="textColor" systemColor="systemGreenColor"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" systemColor="systemGreenColor"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="E78-IU-jHO" kind="relationship" relationship="rootViewController" id="fKd-F0-VCS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tfz-WA-r2d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="883" y="963"/>
+        </scene>
+    </scenes>
+    <designables>
+        <designable name="0jA-8e-5dW">
+            <size key="intrinsicContentSize" width="55" height="53"/>
+        </designable>
+        <designable name="100-1S-VjQ">
+            <size key="intrinsicContentSize" width="30" height="49"/>
+        </designable>
+        <designable name="20M-zv-LsB">
+            <size key="intrinsicContentSize" width="30" height="49"/>
+        </designable>
+        <designable name="2jt-QL-6HL">
+            <size key="intrinsicContentSize" width="30" height="53"/>
+        </designable>
+        <designable name="39t-2m-b1f">
+            <size key="intrinsicContentSize" width="45" height="53"/>
+        </designable>
+        <designable name="3Zk-72-2JA">
+            <size key="intrinsicContentSize" width="30" height="53"/>
+        </designable>
+        <designable name="4iD-VD-Nfg">
+            <size key="intrinsicContentSize" width="30" height="49"/>
+        </designable>
+        <designable name="4o4-aX-KfG">
+            <size key="intrinsicContentSize" width="30" height="49"/>
+        </designable>
+        <designable name="4x4-Cz-LL6">
+            <size key="intrinsicContentSize" width="30" height="53"/>
+        </designable>
+        <designable name="6Pw-L1-6hK">
+            <size key="intrinsicContentSize" width="50" height="49"/>
+        </designable>
+        <designable name="7qR-TY-uyZ">
+            <size key="intrinsicContentSize" width="30" height="49"/>
+        </designable>
+        <designable name="7tu-Vi-hcn">
+            <size key="intrinsicContentSize" width="30" height="49"/>
+        </designable>
+        <designable name="9fm-vl-7ec">
+            <size key="intrinsicContentSize" width="30" height="53"/>
+        </designable>
+        <designable name="D2r-eu-AmU">
+            <size key="intrinsicContentSize" width="30" height="49"/>
+        </designable>
+        <designable name="EJa-MM-1Zh">
+            <size key="intrinsicContentSize" width="30" height="53"/>
+        </designable>
+        <designable name="Eom-pu-5Jp">
+            <size key="intrinsicContentSize" width="61" height="49"/>
+        </designable>
+        <designable name="FR4-Tm-oSL">
+            <size key="intrinsicContentSize" width="30" height="53"/>
+        </designable>
+        <designable name="Fd9-3O-EiD">
+            <size key="intrinsicContentSize" width="30" height="49"/>
+        </designable>
+        <designable name="GKx-jy-StE">
+            <size key="intrinsicContentSize" width="30" height="49"/>
+        </designable>
+        <designable name="Gez-Xo-Kz8">
+            <size key="intrinsicContentSize" width="30" height="49"/>
+        </designable>
+        <designable name="Gl7-nE-VdG">
+            <size key="intrinsicContentSize" width="30" height="53"/>
+        </designable>
+        <designable name="H0R-SQ-pp9">
+            <size key="intrinsicContentSize" width="30" height="49"/>
+        </designable>
+        <designable name="IHa-5E-F5t">
+            <size key="intrinsicContentSize" width="30" height="49"/>
+        </designable>
+        <designable name="IxU-Uv-ERW">
+            <size key="intrinsicContentSize" width="40" height="53"/>
+        </designable>
+        <designable name="JDN-r5-ppP">
+            <size key="intrinsicContentSize" width="40" height="53"/>
+        </designable>
+        <designable name="LPa-Ui-a7P">
+            <size key="intrinsicContentSize" width="30" height="49"/>
+        </designable>
+        <designable name="Mn8-rC-aGV">
+            <size key="intrinsicContentSize" width="59" height="49"/>
+        </designable>
+        <designable name="SKC-3T-8cx">
+            <size key="intrinsicContentSize" width="42" height="53"/>
+        </designable>
+        <designable name="Sij-Yn-oNW">
+            <size key="intrinsicContentSize" width="57" height="53"/>
+        </designable>
+        <designable name="U1A-va-aP4">
+            <size key="intrinsicContentSize" width="30" height="51"/>
+        </designable>
+        <designable name="Uxe-EP-a1f">
+            <size key="intrinsicContentSize" width="68" height="53"/>
+        </designable>
+        <designable name="Vu7-Jp-Iwf">
+            <size key="intrinsicContentSize" width="30" height="49"/>
+        </designable>
+        <designable name="XYA-Dk-uvT">
+            <size key="intrinsicContentSize" width="30" height="53"/>
+        </designable>
+        <designable name="Y3I-sD-UOM">
+            <size key="intrinsicContentSize" width="30" height="49"/>
+        </designable>
+        <designable name="Y5d-XQ-8me">
+            <size key="intrinsicContentSize" width="64" height="53"/>
+        </designable>
+        <designable name="Ydo-vE-RTm">
+            <size key="intrinsicContentSize" width="41" height="53"/>
+        </designable>
+        <designable name="bSG-bo-Kqa">
+            <size key="intrinsicContentSize" width="30" height="53"/>
+        </designable>
+        <designable name="ckg-ug-m1d">
+            <size key="intrinsicContentSize" width="66" height="53"/>
+        </designable>
+        <designable name="d46-2F-KNS">
+            <size key="intrinsicContentSize" width="30" height="53"/>
+        </designable>
+        <designable name="dLL-MC-QGn">
+            <size key="intrinsicContentSize" width="30" height="53"/>
+        </designable>
+        <designable name="diM-XB-4lV">
+            <size key="intrinsicContentSize" width="30" height="49"/>
+        </designable>
+        <designable name="eIS-kh-BsJ">
+            <size key="intrinsicContentSize" width="30" height="49"/>
+        </designable>
+        <designable name="f1L-do-5TF">
+            <size key="intrinsicContentSize" width="57" height="53"/>
+        </designable>
+        <designable name="fDE-6X-Dgl">
+            <size key="intrinsicContentSize" width="30" height="53"/>
+        </designable>
+        <designable name="fws-FY-nc0">
+            <size key="intrinsicContentSize" width="30" height="53"/>
+        </designable>
+        <designable name="gf0-fY-7VF">
+            <size key="intrinsicContentSize" width="30" height="53"/>
+        </designable>
+        <designable name="i3q-Dh-2ps">
+            <size key="intrinsicContentSize" width="30" height="53"/>
+        </designable>
+        <designable name="ii9-LZ-xrx">
+            <size key="intrinsicContentSize" width="37" height="53"/>
+        </designable>
+        <designable name="jjF-4y-iCl">
+            <size key="intrinsicContentSize" width="30" height="49"/>
+        </designable>
+        <designable name="l3d-yL-2Bv">
+            <size key="intrinsicContentSize" width="40" height="49"/>
+        </designable>
+        <designable name="lFW-Xu-MGc">
+            <size key="intrinsicContentSize" width="42" height="53"/>
+        </designable>
+        <designable name="lSD-iO-cST">
+            <size key="intrinsicContentSize" width="57" height="53"/>
+        </designable>
+        <designable name="myN-cA-UId">
+            <size key="intrinsicContentSize" width="38" height="49"/>
+        </designable>
+        <designable name="nb5-ih-FLz">
+            <size key="intrinsicContentSize" width="30" height="53"/>
+        </designable>
+        <designable name="orD-ym-tCe">
+            <size key="intrinsicContentSize" width="57" height="49"/>
+        </designable>
+        <designable name="pDP-oH-8mG">
+            <size key="intrinsicContentSize" width="30" height="53"/>
+        </designable>
+        <designable name="rAv-IB-DwS">
+            <size key="intrinsicContentSize" width="30" height="53"/>
+        </designable>
+        <designable name="riD-mq-Hgo">
+            <size key="intrinsicContentSize" width="30" height="53"/>
+        </designable>
+        <designable name="sDe-dc-EtK">
+            <size key="intrinsicContentSize" width="41" height="53"/>
+        </designable>
+        <designable name="smO-xS-RkX">
+            <size key="intrinsicContentSize" width="30" height="49"/>
+        </designable>
+        <designable name="tBV-dh-STG">
+            <size key="intrinsicContentSize" width="30" height="53"/>
+        </designable>
+        <designable name="ty1-ux-gmg">
+            <size key="intrinsicContentSize" width="30" height="49"/>
+        </designable>
+        <designable name="uZk-z6-Dqu">
+            <size key="intrinsicContentSize" width="30" height="53"/>
+        </designable>
+        <designable name="xyC-0x-fbI">
+            <size key="intrinsicContentSize" width="37" height="53"/>
+        </designable>
+        <designable name="zC8-mX-mk0">
+            <size key="intrinsicContentSize" width="30" height="53"/>
+        </designable>
+        <designable name="zCK-9B-i1G">
+            <size key="intrinsicContentSize" width="30" height="53"/>
+        </designable>
+    </designables>
+    <resources>
+        <image name="01.square" catalog="system" width="128" height="114"/>
+        <image name="dot.square" catalog="system" width="128" height="114"/>
+        <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="hexagon" catalog="system" width="128" height="124"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="viewFlipsideBackgroundColor">
+            <color red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
