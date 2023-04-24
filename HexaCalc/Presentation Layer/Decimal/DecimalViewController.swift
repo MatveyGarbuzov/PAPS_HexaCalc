@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DecimalViewController: UIViewController {
+class DecimalViewController: CalculatorView {
     
     //MARK: Properties
     var stateController: StateController?
@@ -19,7 +19,6 @@ class DecimalViewController: UIViewController {
     @IBOutlet weak var decHStack3: UIStackView!
     @IBOutlet weak var decHStack4: UIStackView!
     @IBOutlet weak var decHStack5: UIStackView!
-    @IBOutlet weak var outputLabel: UILabel!
     
     @IBOutlet weak var ACBtn: RoundButton!
     @IBOutlet weak var SecondFunctionBtn: RoundButton!
@@ -139,7 +138,7 @@ class DecimalViewController: UIViewController {
                 if (decimalLabelText != "0") {
                     runningNumber = decimalLabelText ?? ""
                 }
-                decimalLabelText = self.formatDecimalString(stringToConvert: decimalLabelText ?? "0")
+                decimalLabelText = DecimalFormatter.formatDecimalString(stringToConvert: decimalLabelText ?? "0")
             }
         }
         
@@ -208,129 +207,6 @@ class DecimalViewController: UIViewController {
         }
     }
     
-    func copySelected() {
-        var currentOutput = runningNumber;
-        if (runningNumber == ""){
-            let currLabel = outputLabel.text
-            let spacesRemoved = (currLabel?.components(separatedBy: ",").joined(separator: ""))!
-            currentOutput = spacesRemoved
-        }
-
-        let pasteboard = UIPasteboard.general
-        pasteboard.string = currentOutput
-        
-        //Alert the user that the output was copied to their clipboard
-        let alert = UIAlertController(title: "Copied to Clipboard", message: currentOutput + " has been added to your clipboard.", preferredStyle: .alert)
-        self.present(alert, animated: true, completion: nil)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            alert.dismiss(animated: true, completion: nil)
-        }
-    }
-    
-    func pasteSelected() {
-        let alert = UIAlertController(title: "Paste from Clipboard", message: "Press confirm to paste the contents of your clipboard into HexaCalc.", preferredStyle: .alert)
-
-        alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: {_ in self.pasteFromClipboardToDecimalCalculator()}))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
-        
-        self.present(alert, animated: true)
-    }
-    
-    func copyAndPasteSelected() {
-        let alert = UIAlertController(title: "Select Clipboard Action", message: "Press the action that you would like to perform.", preferredStyle: .alert)
-
-        alert.addAction(UIAlertAction(title: "Copy", style: .default, handler: {_ in self.copySelected()}))
-        alert.addAction(UIAlertAction(title: "Paste", style: .default, handler: {_ in self.pasteFromClipboardToDecimalCalculator()}))
-        
-        self.present(alert, animated: true)
-    }
-    
-    //Function to get and format content from clipboard
-    func pasteFromClipboardToDecimalCalculator() {
-        var pastedInput = ""
-        let pasteboard = UIPasteboard.general
-        pastedInput = pasteboard.string ?? "0"
-        var isNegative = false
-        
-        //Validate input is a hexadecimal value
-        if (pastedInput.first == "-") {
-            isNegative = true
-            pastedInput.removeFirst()
-        }
-        let chars = CharacterSet(charactersIn: "0123456789.").inverted
-        let isValidDecimal = (pastedInput.uppercased().rangeOfCharacter(from: chars) == nil) && ((pastedInput.filter {$0 == "."}.count) < 2)
-        if (isValidDecimal && pastedInput.count < 308) {
-            if (pastedInput == "0") {
-                runningNumber = ""
-                leftValue = ""
-                rightValue = ""
-                result = ""
-                updateOutputLabel(value: "0")
-                stateController?.convValues.largerThan64Bits = false
-                stateController?.convValues.decimalVal = "0"
-                stateController?.convValues.hexVal = "0"
-                stateController?.convValues.binVal = "0"
-            }
-            else {
-                if (isNegative) {
-                    pastedInput = "-" + pastedInput
-                }
-                if (Double(pastedInput)! > 999999999 || Double(pastedInput)! < -999999999){
-                    //Need to use scientific notation for this
-                    runningNumber = pastedInput
-                    updateOutputLabel(value: "\(Double(pastedInput)!.scientificFormatted)")
-                    quickUpdateStateController()
-                }
-                else {
-                    if(Double(pastedInput)!.truncatingRemainder(dividingBy: 1) == 0) {
-                        runningNumber = "\(Int(Double(pastedInput)!))"
-                        updateOutputLabel(value: self.formatDecimalString(stringToConvert: runningNumber))
-                    }
-                    else {
-                        if (pastedInput.count > 9){
-                            //Need to round to 9 digits
-                            //First find how many digits the decimal portion is
-                            var num = Double(pastedInput)!
-                            if (num < 0){
-                                num *= -1
-                            }
-                            var counter = 1
-                            while (num > 1){
-                                counter *= 10
-                                num = num/10
-                            }
-                            var roundVal = 0
-                            if (counter == 1){
-                                roundVal = 100000000/(counter)
-                            }
-                            else {
-                                roundVal = 1000000000/(counter)
-                            }
-                            runningNumber = "\(Double(round(Double(roundVal) * Double(pastedInput)!)/Double(roundVal)))"
-                        }
-                        else {
-                            runningNumber = pastedInput
-                        }
-                    }
-                    updateOutputLabel(value: self.formatDecimalString(stringToConvert: runningNumber))
-                    quickUpdateStateController()
-                }
-            }
-        }
-        else {
-            var alertMessage = "Your clipboad did not contain a valid decimal string."
-            if (isValidDecimal) {
-                alertMessage = "The decimal string in your clipboard is too large."
-            }
-            //Alert the user why the paste failed
-            let alert = UIAlertController(title: "Paste Failed", message: alertMessage, preferredStyle: .alert)
-
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            
-            self.present(alert, animated: true)
-        }
-    }
-    
     //Function to handle a swipe
     @objc func handleLabelSwipes(_ sender:UISwipeGestureRecognizer) {
         
@@ -350,10 +226,10 @@ class DecimalViewController: UIViewController {
         labelDoubleTap.numberOfTapsRequired = 2
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleLabelSwipes(_:)))
         let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleLabelSwipes(_:)))
-            
+        
         leftSwipe.direction = .left
         rightSwipe.direction = .right
-
+        
         self.outputLabel.addGestureRecognizer(leftSwipe)
         self.outputLabel.addGestureRecognizer(rightSwipe)
         self.outputLabel.isUserInteractionEnabled = true
@@ -392,7 +268,7 @@ class DecimalViewController: UIViewController {
                 else {
                     runningNumber += "\(sender.tag)"
                 }
-                updateOutputLabel(value: self.formatDecimalString(stringToConvert: runningNumber))
+                updateOutputLabel(value: DecimalFormatter.formatDecimalString(stringToConvert: runningNumber))
             }
             
             stateController?.convValues.largerThan64Bits = false
@@ -454,7 +330,7 @@ class DecimalViewController: UIViewController {
             }
             else {
                 runningNumber.removeLast()
-                updateOutputLabel(value: self.formatDecimalString(stringToConvert: runningNumber))
+                updateOutputLabel(value: DecimalFormatter.formatDecimalString(stringToConvert: runningNumber))
                 quickUpdateStateController()
             }
         }
@@ -472,11 +348,11 @@ class DecimalViewController: UIViewController {
             if (outputLabel.text == "0" || runningNumber == ""){
                 runningNumber = ""
                 runningNumber = "0."
-                updateOutputLabel(value: self.formatDecimalString(stringToConvert: runningNumber))
+                updateOutputLabel(value: DecimalFormatter.formatDecimalString(stringToConvert: runningNumber))
             }
             else {
                 runningNumber += "."
-                updateOutputLabel(value: self.formatDecimalString(stringToConvert: runningNumber))
+                updateOutputLabel(value: DecimalFormatter.formatDecimalString(stringToConvert: runningNumber))
             }
             
             stateController?.convValues.largerThan64Bits = false
@@ -494,13 +370,13 @@ class DecimalViewController: UIViewController {
             // Squareroot pressed
             if (outputLabel.text == "0" || runningNumber == "") {
                 if (outputLabel.text != "0"){
-
+                    
                     //Need to reset the current operation as we are overriding a null running number state
                     currentOperation = .NULL
-
+                    
                     let currLabel = outputLabel.text
                     let commasRemoved = (currLabel?.components(separatedBy: ",").joined(separator: ""))!
-
+                    
                     let currentNumber = Double(commasRemoved)!
                     
                     // Error - cannot squareroot a negative number
@@ -511,7 +387,7 @@ class DecimalViewController: UIViewController {
                     }
                     
                     result = "\(sqrt(currentNumber))"
-
+                    
                     setupStateControllerValues()
                     stateController?.convValues.largerThan64Bits = false
                     
@@ -543,7 +419,7 @@ class DecimalViewController: UIViewController {
                 }
                 
                 result = "\(sqrt(number))"
-
+                
                 setupStateControllerValues()
                 stateController?.convValues.largerThan64Bits = false
                 
@@ -590,16 +466,16 @@ class DecimalViewController: UIViewController {
             if (outputLabel.text == "0" || runningNumber == ""){
                 //In the case that we want to negate the currently displayed number after a calculation
                 if (outputLabel.text != "0"){
-
+                    
                     //Need to reset the current operation as we are overriding a null running number state
                     currentOperation = .NULL
-
+                    
                     let currLabel = outputLabel.text
                     let commasRemoved = (currLabel?.components(separatedBy: ",").joined(separator: ""))!
-
+                    
                     var currentNumber = Double(commasRemoved)!
                     currentNumber *= -1
-
+                    
                     //Find out if number is an integer
                     if((currentNumber).truncatingRemainder(dividingBy: 1) == 0 && !(Double(commasRemoved)! >= Double(INT64_MAX) || Double(commasRemoved)! <= Double((INT64_MAX * -1) - 1))) {
                         runningNumber = "\(Int(currentNumber))"
@@ -607,12 +483,12 @@ class DecimalViewController: UIViewController {
                     else {
                         runningNumber = "\(currentNumber)"
                     }
-
+                    
                     if (runningNumber.contains("e") || (Double(runningNumber)! > 999999999 || Double(runningNumber)! < -999999999)) {
                         updateOutputLabel(value: "\(Double(runningNumber)!.scientificFormatted)")
                     }
                     else {
-                        updateOutputLabel(value: self.formatDecimalString(stringToConvert: runningNumber))
+                        updateOutputLabel(value: DecimalFormatter.formatDecimalString(stringToConvert: runningNumber))
                     }
                     quickUpdateStateController()
                 }
@@ -624,7 +500,7 @@ class DecimalViewController: UIViewController {
             else {
                 var number = Double(runningNumber)!
                 number *= -1
-
+                
                 //Find out if number is an integer
                 if((number).truncatingRemainder(dividingBy: 1) == 0 && !(Double(runningNumber)! >= Double(INT64_MAX) || Double(runningNumber)! <= Double((INT64_MAX * -1) - 1))) {
                     runningNumber = "\(Int(number))"
@@ -632,12 +508,12 @@ class DecimalViewController: UIViewController {
                 else {
                     runningNumber = "\(number)"
                 }
-
+                
                 if (runningNumber.contains("e") || (Double(runningNumber)! > 999999999 || Double(runningNumber)! < -999999999)) {
                     updateOutputLabel(value: "\(Double(runningNumber)!.scientificFormatted)")
                 }
                 else {
-                    updateOutputLabel(value: self.formatDecimalString(stringToConvert: runningNumber))
+                    updateOutputLabel(value: DecimalFormatter.formatDecimalString(stringToConvert: runningNumber))
                 }
                 quickUpdateStateController()
             }
@@ -645,227 +521,6 @@ class DecimalViewController: UIViewController {
         else {
             operation(operation: .Divide)
         }
-    }
-    
-    //MARK: Private Functions
-    
-    private func operation(operation: Operation) {
-        if currentOperation != .NULL {
-            if runningNumber != "" {
-                rightValue = runningNumber
-                runningNumber = ""
-                
-                switch (currentOperation) {
-                case .Add:
-                    result = "\(Double(leftValue)! + Double(rightValue)!)"
-                    
-                case .Subtract:
-                result = "\(Double(leftValue)! - Double(rightValue)!)"
-                    
-                case .Multiply:
-                    result = "\(Double(leftValue)! * Double(rightValue)!)"
-                    
-                case .Modulus:
-                    //Output Error! if division by 0
-                    if Double(rightValue)! == 0.0 {
-                        result = "Error!"
-                        updateOutputLabel(value: result)
-                        currentOperation = operation
-                        return
-                    }
-                    else {
-                        result = "\(Double(leftValue)!.truncatingRemainder(dividingBy: Double(rightValue)!))"
-                    }
-                    
-                case .Exp:
-                    result = "\(pow(Double(leftValue)!, Double(rightValue)!))"
-
-                case .Divide:
-                    //Output Error! if division by 0
-                    if Double(rightValue)! == 0.0 {
-                        result = "Error!"
-                        updateOutputLabel(value: result)
-                        currentOperation = operation
-                        return
-                    }
-                    else {
-                        result = "\(Double(leftValue)! / Double(rightValue)!)"
-                    }
-                    
-                //Should not occur
-                default:
-                    fatalError("Unexpected Operation...")
-                }
-                
-                leftValue = result
-                
-                //Cannot convert to binary or hexadecimal in this case -- overflow
-                if (Double(result)! >= Double(INT64_MAX) || Double(result)! <= Double((INT64_MAX * -1) - 1)){
-                    stateController?.convValues.largerThan64Bits = true
-                    stateController?.convValues.decimalVal = result
-                    stateController?.convValues.binVal = "0"
-                    stateController?.convValues.hexVal = "0"
-                }
-                else {
-                    setupStateControllerValues()
-                    stateController?.convValues.largerThan64Bits = false
-                }
-                
-                if (Double(result)! > 999999999 || Double(result)! < -999999999){
-                    //Need to use scientific notation for this
-                    result = "\(Double(result)!.scientificFormatted)"
-                    updateOutputLabel(value: result)
-                    currentOperation = operation
-                    return
-                }
-                formatResult()
-            }
-            currentOperation = operation
-        }
-        else {
-            //If string is empty it should be interpreted as a 0
-            if runningNumber == "" {
-                if (leftValue == "") {
-                    leftValue = "0"
-                }
-            }
-            else {
-                leftValue = runningNumber
-            }
-            runningNumber = ""
-            currentOperation = operation
-        }
-    }
-    
-    //Used to round and choose double or int representation
-    private func formatResult(){
-        //Find out if result is an integer
-        if(Double(result)!.truncatingRemainder(dividingBy: 1) == 0) {
-            if Double(result)! >= Double(Int.max) || Double(result)! <= Double(Int.min) {
-                //Cannot convert to integer in this case
-            }
-            else {
-                result = "\(Int(Double(result)!))"
-            }
-            
-            updateOutputLabel(value: self.formatDecimalString(stringToConvert: result))
-        }
-        else {
-            if (result.count > 9 && !result.contains("e")) {
-                //Need to round to 9 digits
-                //First find how many digits the decimal portion is
-                var num = Double(result)!
-                if (num < 0){
-                    num *= -1
-                }
-                var counter = 1
-                while (num > 1){
-                    counter *= 10
-                    num = num/10
-                }
-                var roundVal = 0
-                if (counter == 1){
-                    roundVal = 100000000/(counter)
-                }
-                else {
-                    roundVal = 1000000000/(counter)
-                }
-                let roundedResult = "\(Double(round(Double(roundVal) * Double(result)!)/Double(roundVal)))"
-                
-                let decimalComponents = roundedResult.components(separatedBy: ".")
-                if (decimalComponents.count == 2) {
-                    let chars = CharacterSet(charactersIn: "0.").inverted
-                    if ((decimalComponents[1].rangeOfCharacter(from: chars) == nil)) {
-                        result = decimalComponents[0]
-                        stateController?.convValues.decimalVal = result
-                        updateOutputLabel(value: self.formatDecimalString(stringToConvert: result))
-                        return
-                    }
-                }
-                updateOutputLabel(value: self.formatDecimalString(stringToConvert: roundedResult))
-                stateController?.convValues.decimalVal = roundedResult
-            }
-            else {
-                if (result.contains("e")) {
-                    updateOutputLabel(value: "\(Double(result)!.scientificFormatted)")
-                }
-                else {
-                    updateOutputLabel(value: self.formatDecimalString(stringToConvert: result))
-                }
-            }
-        }
-    }
-    
-    //Perform a full state controller update when a new result is calculated via an operation key
-    private func setupStateControllerValues() {
-        stateController?.convValues.largerThan64Bits = false
-        stateController?.convValues.decimalVal = result
-        let hexConversion = String(Int(Double(result)!), radix: 16)
-        let binConversion = String(Int(Double(result)!), radix: 2)
-        stateController?.convValues.hexVal = hexConversion
-        stateController?.convValues.binVal = binConversion
-    }
-    
-    //Perform a quick update to keep the state controller variables in sync with the calculator label
-    private func quickUpdateStateController() {
-        //Safety condition in the case that runningNumber is nil
-        if (runningNumber == ""){
-            return
-        }
-        //Need to keep the state controller updated with what is on the screen
-        stateController?.convValues.decimalVal = runningNumber
-        
-        //Cannot convert to binary or hexadecimal in this case -- overflow
-        if (Double(runningNumber)! >= Double(INT64_MAX) || Double(runningNumber)! <= Double((INT64_MAX * -1) - 1)){
-            stateController?.convValues.largerThan64Bits = true
-            stateController?.convValues.binVal = "0"
-            stateController?.convValues.hexVal = "0"
-        }
-        else {
-            let hexCurrentVal = String(Int64(Double(runningNumber)!), radix: 16)
-            let binCurrentVal = String(Int64(Double(runningNumber)!), radix: 2)
-            stateController?.convValues.hexVal = hexCurrentVal
-            stateController?.convValues.binVal = binCurrentVal
-        }
-    }
-    
-    // Add standard comma separation that the stock iOS calculator has
-    func formatDecimalString(stringToConvert: String) -> String {
-        if (stringToConvert.contains("e")) {
-            return stringToConvert
-        }
-        
-        var stringToManipulate = stringToConvert
-        var stringCopy1 = stringToConvert
-        var stringCopy2 = stringToConvert
-        var stringToReturn = ""
-        if (stringToConvert.contains(".") || (stringCopy1.removeFirst() == "-")) {
-            if (stringToConvert.contains(".") && (stringCopy2.removeFirst() == "-")) {
-                stringToManipulate.remove(at: stringToManipulate.startIndex)
-                let decimalComponents = stringToManipulate.components(separatedBy: ".")
-                let reversed = String(decimalComponents[0].reversed())
-                let commaSeperated = reversed.separate(every: 3, with: ",")
-                stringToReturn = "-" + commaSeperated.reversed() + "." + decimalComponents[1]
-            }
-            else if (stringToConvert.contains(".")) {
-                let decimalComponents = stringToConvert.components(separatedBy: ".")
-                let reversed = String(decimalComponents[0].reversed())
-                let commaSeperated = reversed.separate(every: 3, with: ",")
-                stringToReturn = commaSeperated.reversed() + "." + decimalComponents[1]
-            }
-            else {
-                stringToManipulate.remove(at: stringToManipulate.startIndex)
-                let reversed = String(stringToManipulate.reversed())
-                let commaSeperated = reversed.separate(every: 3, with: ",")
-                stringToReturn = "-" + commaSeperated.reversed()
-            }
-        }
-        else {
-            let reversed = String(stringToConvert.reversed())
-            let commaSeperated = reversed.separate(every: 3, with: ",")
-            stringToReturn = commaSeperated.reversed() + ""
-        }
-        return stringToReturn
     }
     
     //Function to check whether the user wants the output text label colour to be the same as the overall theme
@@ -877,53 +532,4 @@ class DecimalViewController: UIViewController {
             outputLabel.textColor = UIColor.white
         }
     }
-    
-    // Used to change the display text of buttons for second function mode
-    private func changeOperators(buttons: [RoundButton?], secondFunctionActive: Bool) {
-        if secondFunctionActive {
-            for (i, button) in buttons.enumerated() {
-                switch i {
-                case 0:
-                    button?.setTitle("±", for: .normal)
-                case 1:
-                    button?.setTitle("MOD", for: .normal)
-                case 2:
-                    button?.setTitle("xʸ", for: .normal)
-                case 3:
-                    button?.setTitle("√", for: .normal)
-                default:
-                    fatalError("Index out of range")
-                }
-            }
-        }
-        else {
-            for (i, button) in buttons.enumerated() {
-                switch i {
-                case 0:
-                    button?.setTitle("÷", for: .normal)
-                case 1:
-                    button?.setTitle("×", for: .normal)
-                case 2:
-                    button?.setTitle("-", for: .normal)
-                case 3:
-                    button?.setTitle("+", for: .normal)
-                default:
-                    fatalError("Index out of range")
-                }
-            }
-        }
-    }
-    
-    // Standardized function to update the output label
-    private func updateOutputLabel(value: String) {
-        outputLabel.text = value
-        outputLabel.accessibilityLabel = value
-    }
-}
-
-//Adds state controller to the view controller
-extension DecimalViewController: StateControllerProtocol {
-  func setState(state: StateController) {
-    self.stateController = state
-  }
 }

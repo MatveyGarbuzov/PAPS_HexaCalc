@@ -11,7 +11,7 @@ import os.log
 import MessageUI
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
-
+    
     //MARK: Properties
     var stateController: StateController?
     
@@ -78,7 +78,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             self.preferences.setCalculatorTextColour = self.stateController?.convValues.setCalculatorTextColour ?? false
             self.preferences.colour = self.stateController?.convValues.colour ?? .systemGreen
         }
-
+        
         // Set custom back button text to navigationItem
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Settings", style: .plain, target: nil, action: nil)
         self.navigationController?.navigationBar.prefersLargeTitles = false
@@ -133,14 +133,14 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         if section < self.sectionTitles.count {
             return sectionTitles[section]
         }
-
+        
         return nil
     }
     
     // Build table cell layout
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
-        // Tab bar section
+            // Tab bar section
         case 0:
             // Hexadecimal
             if indexPath.row == 0 {
@@ -169,7 +169,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.self.cellSwitch.addTarget(self, action: #selector(self.decimalSwitchPressed), for: .touchUpInside)
                 return cell
             }
-        // Gestures section
+            // Gestures section
         case 1:
             // Copy action
             if indexPath.row == 0 {
@@ -187,7 +187,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.textLabel?.text = "Paste Action"
                 return cell
             }
-        // Customization section
+            // Customization section
         case 2:
             // Set calculator text colour
             if indexPath.row == 1 {
@@ -206,7 +206,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.textLabel?.text = "Colour"
                 return cell
             }
-        // About the app section
+            // About the app section
         case 3:
             // App version
             if indexPath.row == 0 {
@@ -238,7 +238,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.textLabel?.textColor = preferences.colour
                 return cell
             }
-        // Support section
+            // Support section
         case 4:
             if indexPath.row < 2 {
                 let cell = self.tableView.dequeueReusableCell(withIdentifier: indexPath.row == 0 ? "PrivacyPolicy" : "TermsAndConditions", for: indexPath)
@@ -331,7 +331,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         if sender.isOn {
             let arrayOfTabBarItems = tabBarController?.tabBar.items
             DataPersistence.savePreferences(userPreferences: userPreferences)
-
+            
             if let barItems = arrayOfTabBarItems, barItems.count > 0 {
                 if (barItems[0].title! != "Hexadecimal"){
                     var viewControllers = tabBarController?.viewControllers
@@ -343,7 +343,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         else {
             let arrayOfTabBarItems = tabBarController?.tabBar.items
             DataPersistence.savePreferences(userPreferences: userPreferences)
-
+            
             if let barItems = arrayOfTabBarItems, barItems.count > 1 {
                 if (barItems[0].title! == "Hexadecimal"){
                     var viewControllers = tabBarController?.viewControllers
@@ -363,7 +363,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         if sender.isOn {
             let arrayOfTabBarItems = tabBarController?.tabBar.items
             DataPersistence.savePreferences(userPreferences: userPreferences)
-
+            
             if let barItems = arrayOfTabBarItems, barItems.count > 0 {
                 switch barItems.count {
                 case 1:
@@ -396,7 +396,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         else {
             let arrayOfTabBarItems = tabBarController?.tabBar.items
             DataPersistence.savePreferences(userPreferences: userPreferences)
-
+            
             if let barItems = arrayOfTabBarItems, barItems.count > 1 {
                 if (barItems[0].title! == "Binary"){
                     var viewControllers = tabBarController?.viewControllers
@@ -412,7 +412,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         }
         self.preferences = userPreferences
     }
-
+    
     @IBAction func decimalSwitchPressed(_ sender: UISwitch) {
         let userPreferences = UserPreferences(colour: preferences.colour, colourNum: (stateController?.convValues.colourNum)!,
                                               hexTabState: preferences.hexTabState, binTabState: preferences.binTabState, decTabState: sender.isOn,
@@ -421,7 +421,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         if sender.isOn {
             let arrayOfTabBarItems = tabBarController?.tabBar.items
             DataPersistence.savePreferences(userPreferences: userPreferences)
-
+            
             if let barItems = arrayOfTabBarItems, barItems.count > 0 {
                 switch barItems.count {
                 case 1:
@@ -444,7 +444,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         else {
             let arrayOfTabBarItems = tabBarController?.tabBar.items
             DataPersistence.savePreferences(userPreferences: userPreferences)
-
+            
             if let barItems = arrayOfTabBarItems, barItems.count > 1 {
                 if (barItems[0].title! == "Decimal"){
                     var viewControllers = tabBarController?.viewControllers
@@ -518,14 +518,20 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                         """
             mail.setMessageBody(body, isHTML: false)
         }
-
+        
         self.present(mail, animated: true)
     }
 }
 
 //Adds state controller to the view controller
 extension SettingsViewController: StateControllerProtocol {
-  func setState(state: StateController) {
-    self.stateController = state
-  }
+    func quickUpdateStateController() {
+    }
+    
+    func setupStateControllerValues() {
+    }
+    
+    func setState(state: StateController) {
+        self.stateController = state
+    }
 }
