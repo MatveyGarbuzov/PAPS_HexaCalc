@@ -8,14 +8,12 @@
 
 import UIKit
 
-class BinaryViewController: UIViewController {
-    
+class BinaryViewController: CalculatorView {
     //MARK: Properties
     var stateController: StateController?
     
     let binaryDefaultLabel:String = "0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000"
     
-    @IBOutlet weak var outputLabel: UILabel!
     @IBOutlet weak var binVStack: UIStackView!
     @IBOutlet weak var binHStack1: UIStackView!
     @IBOutlet weak var binHStack2: UIStackView!
@@ -83,8 +81,7 @@ class BinaryViewController: UIViewController {
         let screenHeight = view.bounds.height
         
         let hStacks = [binHStack1!, binHStack2!, binHStack3!, binHStack4!, binHStack5!]
-        let singleButtons = [DIVBtn!, MULTBtn!, SUBBtn!, PLUSBtn!, EQUALSBtn!, DELBtn!, XORBtn!, ORBtn!, ANDBtn!, NOTBtn!,
-                             ONESBtn!, TWOSBtn!, LSBtn!, RSBtn!, Btn0!, Btn1!, Btn00!, Btn11!]
+        let singleButtons = [DIVBtn!, MULTBtn!, SUBBtn!, PLUSBtn!, EQUALSBtn!, DELBtn!, XORBtn!, ORBtn!, ANDBtn!, NOTBtn!, ONESBtn!, TWOSBtn!, LSBtn!, RSBtn!, Btn0!, Btn1!, Btn00!, Btn11!]
         let doubleButtons = [ACBtn!]
         
         if (UIDevice.current.userInterfaceIdiom == .pad) {
@@ -129,16 +126,16 @@ class BinaryViewController: UIViewController {
                 result = ""
                 currentOperation = .NULL
             }
-                //Need to format for binary representation
+            //Need to format for binary representation
             else {
                 //Check if the binary string is negative
                 if (newLabelValue!.contains("-")) {
                     //Need to convert to signed binary notation
-                    newLabelValue = formatNegativeBinaryString(stringToConvert: newLabelValue ?? binaryDefaultLabel)
+                    newLabelValue = BinaryFormatter.formatNegativeBinaryString(stringToConvert: newLabelValue ?? binaryDefaultLabel)
                 }
                 runningNumber = newLabelValue ?? ""
                 currentOperation = .NULL
-                newLabelValue = formatBinaryString(stringToConvert: newLabelValue ?? binaryDefaultLabel)
+                newLabelValue = BinaryFormatter.formatBinaryString(stringToConvert: newLabelValue ?? binaryDefaultLabel)
             }
             updateOutputLabel(value: newLabelValue ?? binaryDefaultLabel)
         }
@@ -206,95 +203,6 @@ class BinaryViewController: UIViewController {
         }
     }
     
-    func copySelected() {
-        var currentOutput = runningNumber;
-        if (runningNumber == ""){
-            //Need to do some processing as the binary label has extra formatting
-            currentOutput = outputLabel.text ?? binaryDefaultLabel
-            currentOutput = currentOutput.replacingOccurrences(of: " ", with: "")
-            var end = false
-            for char in currentOutput {
-                if (char == "0" && end == false){
-                    currentOutput.remove(at: currentOutput.startIndex)
-                }
-                else {
-                    end = true
-                }
-            }
-            
-            if (currentOutput == ""){
-                currentOutput = "0"
-            }
-        }
-
-        let pasteboard = UIPasteboard.general
-        pasteboard.string = currentOutput
-        
-        //Alert the user that the output was copied to their clipboard
-        let alert = UIAlertController(title: "Copied to Clipboard", message: currentOutput + " has been added to your clipboard.", preferredStyle: .alert)
-        self.present(alert, animated: true, completion: nil)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            alert.dismiss(animated: true, completion: nil)
-        }
-    }
-    
-    func pasteSelected() {
-        let alert = UIAlertController(title: "Paste from Clipboard", message: "Press confirm to paste the contents of your clipboard into HexaCalc.", preferredStyle: .alert)
-
-        alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: {_ in self.pasteFromClipboardToBinaryCalculator()}))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
-        
-        self.present(alert, animated: true)
-    }
-    
-    func copyAndPasteSelected() {
-        let alert = UIAlertController(title: "Select Clipboard Action", message: "Press the action that you would like to perform.", preferredStyle: .alert)
-
-        alert.addAction(UIAlertAction(title: "Copy", style: .default, handler: {_ in self.copySelected()}))
-        alert.addAction(UIAlertAction(title: "Paste", style: .default, handler: {_ in self.pasteFromClipboardToBinaryCalculator()}))
-        
-        self.present(alert, animated: true)
-    }
-    
-    func pasteFromClipboardToBinaryCalculator() {
-        var pastedInput = ""
-        let pasteboard = UIPasteboard.general
-        pastedInput = pasteboard.string ?? "0"
-        
-        //Validate input is a hexadecimal value
-        let chars = CharacterSet(charactersIn: "01").inverted
-        let strippedSpacesBinary =  pastedInput.components(separatedBy: .whitespacesAndNewlines).joined()
-        let isValidBinary = strippedSpacesBinary.uppercased().rangeOfCharacter(from: chars) == nil
-        if (isValidBinary && strippedSpacesBinary.count <= 64) {
-            if (pastedInput == "0") {
-                runningNumber = ""
-                updateOutputLabel(value: binaryDefaultLabel)
-                stateController?.convValues.largerThan64Bits = false
-                stateController?.convValues.decimalVal = "0"
-                stateController?.convValues.hexVal = "0"
-                stateController?.convValues.binVal = "0"
-            }
-            else {
-                runningNumber = strippedSpacesBinary
-                let newLabelValue = formatBinaryString(stringToConvert: runningNumber)
-                updateOutputLabel(value: newLabelValue)
-                quickUpdateStateController()
-            }
-        }
-        else {
-            var alertMessage = "Your clipboad did not contain a valid binary string."
-            if (isValidBinary) {
-                alertMessage = "The binary string in your clipboard must have a length of 64 characters or less."
-            }
-            //Alert the user why the paste failed
-            let alert = UIAlertController(title: "Paste Failed", message: alertMessage, preferredStyle: .alert)
-
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            
-            self.present(alert, animated: true)
-        }
-    }
-    
     //Function to handle a swipe
     @objc func handleLabelSwipes(_ sender:UISwipeGestureRecognizer) {
         
@@ -314,10 +222,10 @@ class BinaryViewController: UIViewController {
         labelDoubleTap.numberOfTapsRequired = 2
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleLabelSwipes(_:)))
         let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleLabelSwipes(_:)))
-            
+        
         leftSwipe.direction = .left
         rightSwipe.direction = .right
-
+        
         self.outputLabel.addGestureRecognizer(leftSwipe)
         self.outputLabel.addGestureRecognizer(rightSwipe)
         self.outputLabel.isUserInteractionEnabled = true
@@ -332,7 +240,7 @@ class BinaryViewController: UIViewController {
             currentlyRecognizingDoubleTap = true
         }
     }
-
+    
     //MARK: Button Actions
     @IBAction func numberPressed(_ sender: RoundButton) {
         
@@ -357,7 +265,7 @@ class BinaryViewController: UIViewController {
                 }
                 runningNumber += stringToAdd
                 var newLabelValue = runningNumber
-                newLabelValue = formatBinaryString(stringToConvert: newLabelValue)
+                newLabelValue = BinaryFormatter.formatBinaryString(stringToConvert: newLabelValue)
                 updateOutputLabel(value: newLabelValue)
                 quickUpdateStateController()
             }
@@ -399,7 +307,7 @@ class BinaryViewController: UIViewController {
                 }
                 else {
                     currentLabel = runningNumber
-                    currentLabel = formatBinaryString(stringToConvert: currentLabel ?? binaryDefaultLabel)
+                    currentLabel = BinaryFormatter.formatBinaryString(stringToConvert: currentLabel ?? binaryDefaultLabel)
                     updateOutputLabel(value: currentLabel ?? binaryDefaultLabel)
                     quickUpdateStateController()
                 }
@@ -418,12 +326,12 @@ class BinaryViewController: UIViewController {
         //If running number is empty then it will just stay as 0
         var currentValue = ""
         if runningNumber != "" {
-        if (runningNumber.first == "1" && runningNumber.count == 64){
-            currentValue = String(Int64(bitPattern: UInt64(runningNumber, radix: 2)!))
-        }
-        else {
-            currentValue = String(Int(runningNumber, radix: 2)!)
-        }
+            if (runningNumber.first == "1" && runningNumber.count == 64){
+                currentValue = String(Int64(bitPattern: UInt64(runningNumber, radix: 2)!))
+            }
+            else {
+                currentValue = String(Int(runningNumber, radix: 2)!)
+            }
             currentValue = "\(Int(currentValue)! << 1)"
             
             //Update the state controller
@@ -435,10 +343,10 @@ class BinaryViewController: UIViewController {
             
             var newLabelValue = binConversion
             if ((binConversion.contains("-"))){
-                newLabelValue = formatNegativeBinaryString(stringToConvert: binConversion)
+                newLabelValue = BinaryFormatter.formatNegativeBinaryString(stringToConvert: binConversion)
             }
             runningNumber = newLabelValue
-            newLabelValue = formatBinaryString(stringToConvert: newLabelValue)
+            newLabelValue = BinaryFormatter.formatBinaryString(stringToConvert: newLabelValue)
             updateOutputLabel(value: newLabelValue)
         }
     }
@@ -466,10 +374,10 @@ class BinaryViewController: UIViewController {
             
             var newLabelValue = binConversion
             if ((binConversion.contains("-"))){
-                newLabelValue = formatNegativeBinaryString(stringToConvert: binConversion)
+                newLabelValue = BinaryFormatter.formatNegativeBinaryString(stringToConvert: binConversion)
             }
             runningNumber = newLabelValue
-            newLabelValue = formatBinaryString(stringToConvert: newLabelValue)
+            newLabelValue = BinaryFormatter.formatBinaryString(stringToConvert: newLabelValue)
             updateOutputLabel(value: newLabelValue)
         }
     }
@@ -499,7 +407,7 @@ class BinaryViewController: UIViewController {
             runningNumber = removedLeadingZeroes
         }
         var newLabelValue = onesComplimentString
-        newLabelValue = formatBinaryString(stringToConvert: newLabelValue)
+        newLabelValue = BinaryFormatter.formatBinaryString(stringToConvert: newLabelValue)
         updateOutputLabel(value: newLabelValue)
         
         quickUpdateStateController()
@@ -530,7 +438,7 @@ class BinaryViewController: UIViewController {
             runningNumber = removedLeadingZeroes
         }
         var newLabelValue = twosComplimentString
-        newLabelValue = formatBinaryString(stringToConvert: newLabelValue)
+        newLabelValue = BinaryFormatter.formatBinaryString(stringToConvert: newLabelValue)
         updateOutputLabel(value: newLabelValue)
         
         quickUpdateStateController()
@@ -572,215 +480,6 @@ class BinaryViewController: UIViewController {
         operation(operation: currentOperation)
     }
     
-    //MARK: Private Functions
-    private func operation(operation: Operation) {
-        if currentOperation != .NULL {
-            if runningNumber != "" {
-                if (runningNumber.first == "1" && runningNumber.count == 64){
-                    rightValue = String(Int64(bitPattern: UInt64(runningNumber, radix: 2)!))
-                }
-                else {
-                    rightValue = String(Int(runningNumber, radix: 2)!)
-                }
-                runningNumber = ""
-                
-                switch (currentOperation) {
-                case .Add:
-                    
-                    //Check for an oveflow
-                    let overCheck = Int64(leftValue)!.addingReportingOverflow(Int64(rightValue)!)
-                    if (overCheck.overflow) {
-                        result = "Error! Integer Overflow!"
-                        updateOutputLabel(value: result)
-                        currentOperation = operation
-                        stateController?.convValues.largerThan64Bits = true
-                        stateController?.convValues.decimalVal = "0"
-                        return
-                    }
-                    else {
-                        result = "\(Int(leftValue)! + Int(rightValue)!)"
-                    }
-                    
-                case .Subtract:
-
-                    //Check for an overflow
-                    let overCheck = Int64(leftValue)!.subtractingReportingOverflow(Int64(rightValue)!)
-                    if (overCheck.overflow) {
-                        result = "Error! Integer Overflow!"
-                        updateOutputLabel(value: result)
-                        currentOperation = operation
-                        stateController?.convValues.largerThan64Bits = true
-                        stateController?.convValues.decimalVal = "0"
-                        return
-                    }
-                    else {
-                        result = "\(Int(leftValue)! - Int(rightValue)!)"
-                    }
-                    
-                case .Multiply:
-                    
-                    //Check for an overflow
-                    let overCheck = Int64(leftValue)!.multipliedReportingOverflow(by: Int64(rightValue)!)
-                    if (overCheck.overflow) {
-                        result = "Error! Integer Overflow!"
-                        updateOutputLabel(value: result)
-                        currentOperation = operation
-                        stateController?.convValues.largerThan64Bits = true
-                        stateController?.convValues.decimalVal = "0"
-                        return
-                    }
-                    else {
-                        result = "\(Int(leftValue)! * Int(rightValue)!)"
-                    }
-                    
-                case .Divide:
-                    //Output Error! if division by 0
-                    if Int(rightValue)! == 0 {
-                        result = "Error!"
-                        updateOutputLabel(value: result)
-                        currentOperation = operation
-                        return
-                    }
-                    let overCheck = Int64(leftValue)!.dividedReportingOverflow(by: Int64(rightValue)!)
-                    if (overCheck.overflow) {
-                        result = "Error! Integer Overflow!"
-                        updateOutputLabel(value: result)
-                        currentOperation = operation
-                        stateController?.convValues.largerThan64Bits = true
-                        stateController?.convValues.decimalVal = "0"
-                        return
-                    }
-                    else {
-                        result = "\(Int(leftValue)! / Int(rightValue)!)"
-                    }
-                    
-                case .AND:
-                result = "\(Int(leftValue)! & Int(rightValue)!)"
-                    
-                case .OR:
-                result = "\(Int(leftValue)! | Int(rightValue)!)"
-                    
-                case .XOR:
-                result = "\(Int(leftValue)! ^ Int(rightValue)!)"
-                
-                //Should not occur
-                default:
-                    fatalError("Unexpected Operation...")
-                }
-                
-                leftValue = result
-                setupStateControllerValues()
-                
-                let binaryRepresentation = stateController?.convValues.binVal ?? binaryDefaultLabel
-                var newLabelValue = binaryRepresentation
-                if ((binaryRepresentation.contains("-"))){
-                    newLabelValue = formatNegativeBinaryString(stringToConvert: binaryRepresentation)
-                }
-                newLabelValue = formatBinaryString(stringToConvert: newLabelValue)
-                updateOutputLabel(value: newLabelValue)
-            }
-            currentOperation = operation
-        }
-        else {
-            //If string is empty it should be interpreted as a 0
-            if runningNumber == "" {
-                if (leftValue == "") {
-                    leftValue = "0"
-                }
-            }
-            else {
-                if (runningNumber.first == "1" && runningNumber.count == 64){
-                leftValue = String(Int64(bitPattern: UInt64(runningNumber, radix: 2)!))
-                }
-                else {
-                    leftValue = String(Int(runningNumber, radix: 2)!)
-                }
-            }
-            runningNumber = ""
-            currentOperation = operation
-        }
-    }
-    
-    func formatBinaryString(stringToConvert: String) -> String {
-        var manipulatedStringToConvert = stringToConvert
-        while (manipulatedStringToConvert.count < 64){
-            manipulatedStringToConvert = "0" + manipulatedStringToConvert
-        }
-        return manipulatedStringToConvert.separate(every: 4, with: " ")
-    }
-    
-    func formatNegativeBinaryString(stringToConvert: String) -> String {
-        var manipulatedStringToConvert = stringToConvert
-        manipulatedStringToConvert.removeFirst()
-        var newString = ""
-        
-        //Flip all bits
-        for i in 0..<manipulatedStringToConvert.count {
-            if (manipulatedStringToConvert[manipulatedStringToConvert.index(manipulatedStringToConvert.startIndex, offsetBy: i)] == "0"){
-                newString += "1"
-            }
-            else {
-                newString += "0"
-            }
-        }
-        
-        //Add 1 to the string
-        let index = newString.lastIndex(of: "0") ?? (newString.endIndex)
-        var newSubString = String(newString.prefix(upTo: index))
-        
-        
-        if (newSubString.count < newString.count) {
-            newSubString = newSubString + "1"
-        }
-        
-        while (newSubString.count < newString.count) {
-            newSubString = newSubString + "0"
-        }
-        
-        //Sign extend
-        while (newSubString.count < 64) {
-            newSubString = "1" + newSubString
-        }
-        
-        return newSubString
-    }
-    
-    //Perform a full state controller update when a new result is calculated via an operation key
-    private func setupStateControllerValues() {
-        stateController?.convValues.decimalVal = result
-        let hexConversion = String(Int(result)!, radix: 16)
-        let binConversion = String(Int(result)!, radix: 2)
-        stateController?.convValues.hexVal = hexConversion
-        stateController?.convValues.binVal = binConversion
-    }
-    
-    //Perform a quick update to keep the state controller variables in sync with the calculator label
-    private func quickUpdateStateController() {
-        
-        if (runningNumber.count < 65) {
-            stateController?.convValues.largerThan64Bits = false
-        }
-        
-        //Need to keep the state controller updated with what is on the screen
-        stateController?.convValues.binVal = runningNumber
-        //Need to convert differently if binary is positive or negative
-        var hexCurrentVal = ""
-        var decCurrentVal = ""
-        if (outputLabel.text?.first == "1"){
-            let currLabel = outputLabel.text
-            let spacesRemoved = (currLabel?.components(separatedBy: " ").joined(separator: ""))!
-            stateController?.convValues.binVal = spacesRemoved
-            decCurrentVal = String(Int64(bitPattern: UInt64(spacesRemoved, radix: 2)!))
-            hexCurrentVal = String(Int64(bitPattern: UInt64(spacesRemoved, radix: 2)!), radix: 16)
-        }
-        else {
-            hexCurrentVal = String(Int(runningNumber, radix: 2)!, radix: 16)
-            decCurrentVal = String(Int(runningNumber, radix: 2)!)
-        }
-        stateController?.convValues.hexVal = hexCurrentVal
-        stateController?.convValues.decimalVal = decCurrentVal
-    }
-    
     //Function to check whether the user wants the output text label colour to be the same as the overall theme
     private func setupCalculatorTextColour(state: Bool, colourToSet: UIColor){
         if (state) {
@@ -790,17 +489,4 @@ class BinaryViewController: UIViewController {
             outputLabel.textColor = UIColor.white
         }
     }
-    
-    // Standardized function to update the output label
-    private func updateOutputLabel(value: String) {
-        outputLabel.text = value
-        outputLabel.accessibilityLabel = value
-    }
-}
-
-//Adds state controller to the view controller
-extension BinaryViewController: StateControllerProtocol {
-  func setState(state: StateController) {
-    self.stateController = state
-  }
 }

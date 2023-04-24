@@ -1,12 +1,11 @@
 //
-//  StateController.swift
+//  ConvVals.swift
 //  HexaCalc
 //
-//  Created by Anthony Hopkins on 2020-07-22.
-//  Copyright © 2020 Anthony Hopkins. All rights reserved.
+//  Created by Sofia Timokhina on 24.4.23..
+//  Copyright © 2023 Anthony Hopkins. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 struct convVals{
@@ -20,12 +19,4 @@ struct convVals{
     var setCalculatorTextColour: Bool = false
     var copyActionIndex: Int32 = 0
     var pasteActionIndex: Int32 = 1
-}
-
-protocol StateControllerProtocol {
-  func setState(state: StateController)
-}
-
-class StateController {
-    var convValues:convVals = convVals()
 }
