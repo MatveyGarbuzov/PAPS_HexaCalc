@@ -153,7 +153,7 @@ extension BinaryViewController: CalculateInteractor {
       }
       else {
         runningNumber = strippedSpacesBinary
-        let newLabelValue = formatBinaryString(stringToConvert: runningNumber)
+        let newLabelValue = BinaryFormatter.formatBinaryString(stringToConvert: runningNumber)
         updateOutputLabel(value: newLabelValue)
         quickUpdateStateController()
       }

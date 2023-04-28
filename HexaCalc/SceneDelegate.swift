@@ -11,39 +11,29 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+  
+    // MARK: stateController - связывает результат калькулятора, чтобы
+    // MARK: правильно переводить в различные системы счисления, при смене типа калькулятора.
     let stateController = StateController()
-
-
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        
-        self.window = self.window ?? UIWindow()
-
-        //Grab the storyboard and ensure that the tab bar controller is reinstantiated with the details below.
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let tabBarController = storyboard.instantiateViewController(withIdentifier: "tabBarController") as! UITabBarController
-
-        for child in tabBarController.viewControllers ?? [] {
-            if let navigationChild = child as? UINavigationController {
-                if let firstChild = navigationChild.viewControllers[0] as? StateControllerProtocol {
-                    firstChild.setState(state: stateController)
-                    continue
-                }
-            }
-            if let top = child as? StateControllerProtocol {
-                top.setState(state: stateController)
-            }
-        }
-
-        //Set the rootViewController to our modified version with the StateController instances
-        self.window!.rootViewController = tabBarController
-        self.window!.makeKeyAndVisible()
-
-        print("Finished scene setting code")
-        
-        guard let _ = (scene as? UIWindowScene) else { return }
+    
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions:  UIScene.ConnectionOptions) {
+      guard let windowScene = (scene as? UIWindowScene) else { return }
+    
+      let window = UIWindow(windowScene: windowScene)
+      let storyboard = UIStoryboard(name: "Main", bundle: nil)
+      
+      // MARK: id для контроллеров указаны в Storyboard
+//      let navigationController = storyboard.instantiateViewController(withIdentifier: "BinaryViewController") as! BinaryViewController
+      let navigationController = storyboard.instantiateViewController(withIdentifier: "HexadecimalViewController") as! HexadecimalViewController
+//      let navigationController = storyboard.instantiateViewController(withIdentifier: "DecimalViewController") as! DecimalViewController
+//      let navigationController = storyboard.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
+      
+      // MARK: Обязательно делать .setState, чтобы всё ок было с результатом вычислений
+      navigationController.setState(state: stateController)
+      
+      window.rootViewController = navigationController
+      self.window = window
+      window.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
