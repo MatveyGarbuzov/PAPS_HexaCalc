@@ -66,6 +66,10 @@ class HexadecimalViewController: CalculatorView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        prepareNavigationBarMenu(prepareNavigationBarMenuTitleView())
+        navigationBarMenu.container = view
+        self.navigationController!.navigationBar.isTranslucent = false
+        navigationController?.view.backgroundColor = .black
         
         //Saving the original view controllers
         let originalViewControllers = tabBarController?.viewControllers

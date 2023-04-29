@@ -56,6 +56,10 @@ class DecimalViewController: CalculatorView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        prepareNavigationBarMenu(prepareNavigationBarMenuTitleView())
+        navigationBarMenu.container = view
+        self.navigationController!.navigationBar.isTranslucent = false
+        navigationController?.view.backgroundColor = .black
         
         outputLabel.accessibilityIdentifier = "Decimal Output Label"
         updateOutputLabel(value: "0")

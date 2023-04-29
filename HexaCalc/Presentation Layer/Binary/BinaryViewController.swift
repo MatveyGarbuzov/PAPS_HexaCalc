@@ -56,6 +56,10 @@ class BinaryViewController: CalculatorView {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        prepareNavigationBarMenu(prepareNavigationBarMenuTitleView())
+        navigationBarMenu.container = view
+        self.navigationController!.navigationBar.isTranslucent = false
+        navigationController?.view.backgroundColor = .black
         // Do any additional setup after loading the view.
         
         outputLabel.accessibilityIdentifier = "Binary Output Label"
