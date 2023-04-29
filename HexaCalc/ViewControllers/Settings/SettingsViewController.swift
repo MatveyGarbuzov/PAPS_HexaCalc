@@ -228,7 +228,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Navigate to copy or paste action selection view
-        if indexPath.section == 1 {
+        if indexPath.section == 0 {
             if let _ = tableView.cellForRow(at: indexPath), let destinationViewController = navigationController?.storyboard?.instantiateViewController(withIdentifier: SettingsSelectionViewController.identifier) as? SettingsSelectionViewController {
                 destinationViewController.selectionList = ["Single Tap", "Double Tap", "Off"]
                 destinationViewController.preferences = self.preferences
@@ -242,7 +242,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
         // Navigate to colour selection view
-        if indexPath.section == 2 && indexPath.row == 0 {
+        if indexPath.section == 1 && indexPath.row == 0 {
             if let _ = tableView.cellForRow(at: indexPath), let destinationViewController = navigationController?.storyboard?.instantiateViewController(withIdentifier: SettingsSelectionViewController.identifier) as? SettingsSelectionViewController {
                 destinationViewController.selectionList = ["Red", "Orange", "Yellow", "Green", "Blue", "Teal", "Indigo", "Violet"]
                 destinationViewController.preferences = self.preferences
@@ -256,7 +256,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
         // Open an about the app URL or open share detail menu
-        if indexPath.section == 3 && indexPath.row > 0 {
+        if indexPath.section == 2 && indexPath.row > 0 {
             if indexPath.row == 3 {
                 if let currentURL = ReviewManager.getWriteReviewURL() {
                     UIApplication.shared.open(currentURL)
@@ -266,19 +266,21 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             else if indexPath.row == 2 {
                 let activityViewController = UIActivityViewController(activityItems: [ReviewManager.getProductURL()], applicationActivities: nil)
                 // To prevent crashes on iPads
-                activityViewController.popoverPresentationController?.sourceView = self.tableView.cellForRow(at: indexPath)
+                if let cell = tableView.cellForRow(at: indexPath) {
+                    activityViewController.popoverPresentationController?.sourceView = cell
+                }
                 present(activityViewController, animated: true, completion: nil)
             }
             // Open link to GitHub
             else {
-                let currentURL = NSURL(string: aboutAppURLs[indexPath.row - 1])! as URL
+                let currentURL = URL(string: aboutAppURLs[indexPath.row - 1])!
                 UIApplication.shared.open(currentURL, options: [:], completionHandler: nil)
             }
         }
         // Open a support URL
-        if indexPath.section == 4 {
+        if indexPath.section == 3 {
             if indexPath.row < 2 {
-                let currentURL = NSURL(string: supportURLs[indexPath.row])! as URL
+                let currentURL = URL(string: supportURLs[indexPath.row])!
                 UIApplication.shared.open(currentURL, options: [:], completionHandler: nil)
             }
             else {
